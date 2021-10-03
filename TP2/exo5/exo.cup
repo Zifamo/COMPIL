@@ -1,0 +1,19 @@
+import java_cup.runtime.*;
+
+parser code {:
+        public static void main(String args[]) throws Exception {
+            new parser(new Yylex(System.in)).parse();
+        }
+:}
+
+action code {:
+      int nbImbrication=0;
+:}
+
+terminal PAROVT, PARFMT;
+non terminal expr, prog ;
+
+prog  ::= expr {: System.out.println("Nombre Imbrication "+nbImbrication); System.out.println("ANALYSE CORRECT");  :} ;
+expr ::= PAROVT expr{:nbImbrication++;:} PARFMT  expr 
+        |  ;
+

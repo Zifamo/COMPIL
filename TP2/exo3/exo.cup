@@ -1,0 +1,29 @@
+import java_cup.runtime.*;
+
+parser code {:
+        public static void main(String args[]) throws Exception {
+            new parser(new Yylex(System.in)).parse();
+        }
+:}
+
+action code {:
+      int prixTotal = 0;
+:}
+
+terminal Integer ENTIER;
+terminal VIRG, POINT, FACTURE, TOTAL, DEUXPOINT, NOM, NOMARTICLE;
+non terminal fact, liste_article;
+
+
+fact ::=  FACTURE NOM DEUXPOINT liste_article TOTAL ENTIER:nbTotal {: 
+                                                       if(nbTotal == prixTotal){
+                                                           System.out.println("Total CORRECT");
+                                                       } else {
+                                                            System.out.println("Total INCORRECT");
+                                                       }
+                                                       System.out.println(" Analyse terminee ! "); 
+                                                        :} POINT 
+        | {: System.out.println(" Entree vide ! "); :} ;
+
+liste_article ::=  liste_article  NOMARTICLE ENTIER:n1 ENTIER:n2 VIRG  {: prixTotal = prixTotal + (n1*n2); :}
+                 |  NOMARTICLE ENTIER:n1 ENTIER:n2 VIRG {: prixTotal = prixTotal +  (n1*n2); :} ;

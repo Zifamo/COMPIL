@@ -1,0 +1,1 @@
+((def (a 5) (D) (b 6) (c 7)) (appli toto x) etc etc ()) 
