@@ -1,8 +1,9 @@
 import java_cup.runtime.*;
+import java.io.*; 
 
 parser code {:
         public static void main(String args[]) throws Exception {
-            new parser(new Yylex(System.in)).parse();
+            new parser(new Yylex(new InputStreamReader(System.in))).parse();
         }
 :}
 
@@ -12,7 +13,7 @@ action code {:
 
 terminal String ASPECTLIEU;
 terminal ACTIVITES, ANIMATEUR, PARTICIPANTS, FIN, CENTRE, JOUR, DEUXPOINT, POINT, VIRG, 
-         HORAIRE, EGALE, GUILL, CHAINE,  PRENOM, ACCOVT, ACCFMT, POINTVIRG;
+         HORAIRE, EGALE, GUILL, CHAINE, NOMLIEU,  PRENOM, ACCOVT, ACCFMT, POINTVIRG;
 
 non terminal planning, listeJour, listeCreneau,listePrenom;
 
@@ -22,7 +23,9 @@ planning ::= ACTIVITES CENTRE listeJour FIN POINT |   ;
 listeJour ::= listeJour JOUR DEUXPOINT listeCreneau 
               | JOUR DEUXPOINT listeCreneau  ;
 
-listeCreneau ::= listeCreneau HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU  GUILL CHAINE GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG
-                 | HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL CHAINE GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG ;
+listeCreneau ::= listeCreneau HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU  GUILL NOMLIEU GUILL VIRG ANIMATEUR 
+                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG
+                 | HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL NOMLIEU GUILL VIRG ANIMATEUR 
+                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG ;
 
 listePrenom ::= PRENOM VIRG listePrenom | PRENOM |   ;

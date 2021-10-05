@@ -4,6 +4,7 @@
 //----------------------------------------------------
 
 import java_cup.runtime.*;
+import java.io.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 generated parser.
@@ -50,24 +51,24 @@ public class parser extends java_cup.runtime.lr_parser {
     "\021\001\002\000\004\020\022\001\002\000\004\021\023" +
     "\001\002\000\004\020\024\001\002\000\004\015\025\001" +
     "\002\000\004\004\026\001\002\000\004\020\027\001\002" +
-    "\000\004\021\030\001\002\000\004\020\031\001\002\000" +
+    "\000\004\022\030\001\002\000\004\020\031\001\002\000" +
     "\004\015\032\001\002\000\004\006\033\001\002\000\004" +
-    "\017\034\001\002\000\004\022\035\001\002\000\004\015" +
+    "\017\034\001\002\000\004\023\035\001\002\000\004\015" +
     "\036\001\002\000\004\007\037\001\002\000\004\017\040" +
-    "\001\002\000\004\023\041\001\002\000\006\022\043\024" +
-    "\ufff8\001\002\000\004\024\046\001\002\000\006\015\044" +
-    "\024\ufff9\001\002\000\006\022\043\024\ufff8\001\002\000" +
-    "\004\024\ufffa\001\002\000\004\025\047\001\002\000\010" +
+    "\001\002\000\004\024\041\001\002\000\006\023\043\025" +
+    "\ufff8\001\002\000\004\025\046\001\002\000\006\015\044" +
+    "\025\ufff9\001\002\000\006\023\043\025\ufff8\001\002\000" +
+    "\004\025\ufffa\001\002\000\004\026\047\001\002\000\010" +
     "\010\ufffc\012\ufffc\016\ufffc\001\002\000\004\020\051\001" +
     "\002\000\004\021\052\001\002\000\004\020\053\001\002" +
     "\000\004\015\054\001\002\000\004\004\055\001\002\000" +
-    "\004\020\056\001\002\000\004\021\057\001\002\000\004" +
+    "\004\020\056\001\002\000\004\022\057\001\002\000\004" +
     "\020\060\001\002\000\004\015\061\001\002\000\004\006" +
-    "\062\001\002\000\004\017\063\001\002\000\004\022\064" +
+    "\062\001\002\000\004\017\063\001\002\000\004\023\064" +
     "\001\002\000\004\015\065\001\002\000\004\007\066\001" +
-    "\002\000\004\017\067\001\002\000\004\023\070\001\002" +
-    "\000\006\022\043\024\ufff8\001\002\000\004\024\072\001" +
-    "\002\000\004\025\073\001\002\000\010\010\ufffb\012\ufffb" +
+    "\002\000\004\017\067\001\002\000\004\024\070\001\002" +
+    "\000\006\023\043\025\ufff8\001\002\000\004\025\072\001" +
+    "\002\000\004\026\073\001\002\000\010\010\ufffb\012\ufffb" +
     "\016\ufffb\001\002\000\004\016\016\001\002\000\010\010" +
     "\ufffd\012\ufffd\016\020\001\002" });
 
@@ -136,7 +137,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
         public static void main(String args[]) throws Exception {
-            new parser(new Yylex(System.in)).parse();
+            new parser(new Yylex(new InputStreamReader(System.in))).parse();
         }
 
 
@@ -219,7 +220,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // listeCreneau ::= listeCreneau HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL CHAINE GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG 
+          case 5: // listeCreneau ::= listeCreneau HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL NOMLIEU GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG 
             {
               Object RESULT =null;
 
@@ -228,7 +229,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // listeCreneau ::= HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL CHAINE GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG 
+          case 6: // listeCreneau ::= HORAIRE EGALE GUILL CHAINE GUILL VIRG ASPECTLIEU GUILL NOMLIEU GUILL VIRG ANIMATEUR EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG 
             {
               Object RESULT =null;
 

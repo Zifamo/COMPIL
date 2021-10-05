@@ -1,0 +1,24 @@
+
+Activites CS_29200_Bellevue
+
+mardi :
+        8h-10h15 = "yoga", salle "Abricot", animateur= Helene,
+        participants={Lucien, Jeanne, Vero}; 
+
+        09h15-11h30 = "jeu de cartes", salle "Grand Amphi", animateur = Jean-Michel,
+        participants = { Pierre-Yves, Lucien, Joelle, Kevin, Anne};
+
+        15h-17h = "scrapbooking europeen", salle "Abricot", animateur = Pierre,
+        participants= { Brice, Moncef, Alice};
+            
+lundi :
+        20h-21h30 = "foot", terrain "stade Maradona", animateur = Marie-Catherine, 
+        participants = {};
+
+        19h-20h = "tennis", terrain "tennis 1", animateur = Yannick, 
+        participants ={Thierry};
+        
+        14h30-16h = "yoga", salle "Jean-Luc Lesage", animateur = Brice,
+        participants = {Juliette, Karim, Paul-Henri};
+
+Fin.
