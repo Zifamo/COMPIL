@@ -28,10 +28,10 @@ animateur       { return new Symbol(sym.ANIMATEUR); }
 participants    { return new Symbol(sym.PARTICIPANTS); }
 Fin             { return new Symbol(sym.FIN); }
 {centre}        { return new Symbol(sym.CENTRE); }
-{jour}          { return new Symbol(sym.JOUR); }
-{horaire}       { return new Symbol(sym.HORAIRE); }
+{jour}          { return new Symbol(sym.JOUR, new String(yytext())); }
+{horaire}       { return new Symbol(sym.HORAIRE, new String(yytext())); }
 {aspectLieu}    { return new Symbol(sym.ASPECTLIEU, new String(yytext())); }
-{chaine}        { return new Symbol(sym.CHAINE); }
+{chaine}        { return new Symbol(sym.CHAINE, new String(yytext())); }
 {prenom}        { return new Symbol(sym.PRENOM); }
 {point}         { return new Symbol(sym.POINT); }
 {deuxpoint}     { return new Symbol(sym.DEUXPOINT); }

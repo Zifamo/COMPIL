@@ -8,24 +8,60 @@ parser code {:
 :}
 
 action code {:
-      int prixTotal = 0;
+      int nbActivites = 0;
+      int nbExt = 0;
+      int nbInt = 0;
+      int nbParticipants = 0;
+      int participants = 0;
+      int maximal = -1;
+      String heure;
+      String activi;
+      String jour = " ";
+
 :}
 
-terminal String ASPECTLIEU;
-terminal ACTIVITES, ANIMATEUR, PARTICIPANTS, FIN, CENTRE, JOUR, DEUXPOINT, POINT, VIRG, 
-         HORAIRE, EGALE, CHAINE, PRENOM, ACCOVT, ACCFMT, POINTVIRG;
+terminal String ASPECTLIEU,CHAINE,HORAIRE,JOUR;
+terminal ACTIVITES, ANIMATEUR, PARTICIPANTS, FIN, CENTRE, DEUXPOINT, POINT, VIRG, EGALE, PRENOM, ACCOVT, ACCFMT, POINTVIRG;
 
 non terminal planning, listeJour, listeCreneau,listePrenom;
 
 
-planning ::= ACTIVITES CENTRE listeJour FIN POINT |   ;
+planning ::= ACTIVITES CENTRE listeJour FIN POINT {: System.out.println("format du planning correct. ");
+                                                     nbActivites = nbInt + nbExt;
+                                                     System.out.println(nbActivites+" activites ,");
+                                                     System.out.println("dont "+nbExt+" à l'exterieur");
+                                                     System.out.println("l'activite "+activi+" du "+jour+" "+heure+" rassemble "+maximal+" participants");
+                                                  :} |   ;
 
-listeJour ::= listeJour JOUR DEUXPOINT listeCreneau 
-              | JOUR DEUXPOINT listeCreneau  ;
+listeJour ::= listeJour JOUR:j DEUXPOINT listeCreneau {:
+                                                      :}
+              | JOUR:j DEUXPOINT listeCreneau {:jour=j;
+                                             :};
 
-listeCreneau ::= listeCreneau HORAIRE EGALE CHAINE VIRG ASPECTLIEU  CHAINE VIRG ANIMATEUR 
-                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG
-                 | HORAIRE EGALE CHAINE VIRG ASPECTLIEU CHAINE VIRG ANIMATEUR 
-                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG ;
+listeCreneau ::= listeCreneau HORAIRE:h EGALE CHAINE:nom VIRG ASPECTLIEU:aspect  CHAINE VIRG ANIMATEUR 
+                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG {: if(aspect.equals("salle")){
+                                                                                                    nbInt++;
+                                                                                                } else {
+                                                                                                    nbExt++;
+                                                                                                }
+                                                                                                if(maximal < participants) {
+                                                                                                    maximal = participants;
+                                                                                                    heure = h;
+                                                                                                    activi = nom;
+                                                                                                }
+                                                                                                :}
+                 | HORAIRE:h EGALE CHAINE:nom VIRG ASPECTLIEU:aspect CHAINE VIRG ANIMATEUR 
+                    EGALE PRENOM VIRG PARTICIPANTS EGALE ACCOVT listePrenom ACCFMT POINTVIRG {: if(aspect.equals("salle")){
+                                                                                                    nbInt++;
+                                                                                                } else {
+                                                                                                    nbExt++;
+                                                                                                }
+                                                                                                if(maximal < participants) {
+                                                                                                    maximal = participants;
+                                                                                                    heure = h;
+                                                                                                    activi = nom;
+                                                                                                }
+                                                                                                :};
 
-listePrenom ::= PRENOM VIRG listePrenom | PRENOM |   ;
+
+listePrenom ::=  PRENOM VIRG  {:nbParticipants++;:} listePrenom | PRENOM {:nbParticipants++;participants=nbParticipants;nbParticipants = 0;:} | {:nbParticipants = 0;participants=nbParticipants;:}  ;
